@@ -1,0 +1,12 @@
+cassandra:
+  image: cassandra
+  ports:
+    - "9042:9042" # Keep the ports mapped to a specified port not a dynamic one, this is needed by kong
+
+kong:
+  image: chourobin/docker-kong
+  ports:
+    - "80:8000"
+    - "443:8443"
+  links:
+    - cassandra:cassandra
